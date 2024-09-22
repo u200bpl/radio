@@ -24,8 +24,8 @@
 </div>
 @endif
 
-<div class="container mx-auto px-4">
-    <div class="grid grid-cols-12 gap-5 mt-16">
+<div class="container mx-auto px-4 mt-10">
+    <div class="grid grid-cols-12 gap-5">
         <main class="col-span-9">
             <h2 class="text-xl font-semibold">Radio Stations</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5">
