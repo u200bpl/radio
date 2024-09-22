@@ -1,2 +1,3 @@
-import './bootstrap';
-window.axios = require('axios');
+import "./bootstrap";
+import axios from "axios";
+window.axios = axios;

@@ -14,6 +14,16 @@ class RadioSeeder extends Seeder
      */
     public function run(): void
     {
+        // HARDDANCEFAMILY
+        Radio::create([
+            'name' => 'Hard-Dance Family Radio',
+            'url' => 'https://stream.meneerben.com:8000/radio.mp3?refresh=1726947584875',
+            'description' => 'Commerciële Zenders',
+            'image' => '001_radio.webp',
+            'background' => 'background.1726533198.jpg',
+            'featured' => true,
+        ]);
+
         // SLAM
         Radio::create([
             'name' => 'SLAM! Hardstyle',

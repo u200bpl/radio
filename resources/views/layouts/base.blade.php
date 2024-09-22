@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
         @vite('resources/css/app.css')
+        @vite('resources/js/app.js')
 
         <script>
             if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -56,5 +57,7 @@
         @include('layouts.footer')
 
         @include('layouts.audio')
+        <script async defer src="{{ URL::to('/') }}/js/audio.js"></script>
+        <script async defer src="{{ URL::to('/') }}/js/pagination.js"></script>
     </body>
 </html>

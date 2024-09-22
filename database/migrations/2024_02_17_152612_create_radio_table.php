@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('url');
             $table->string('description')->nullable();
             $table->string('image');
+            $table->string('background')->nullable();
+            $table->integer('listeners')->default(0);
+            $table->boolean('featured')->default(false);
             $table->timestamps();
         });
     }

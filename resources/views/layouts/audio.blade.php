@@ -1,5 +1,6 @@
 <!-- AUDIO -->
-<section class="audio bg-slate-50 dark:bg-zinc-800 fixed bottom-5 left-1/2 transform -translate-x-1/2 text-center p-2 text-slate-950 dark:text-white shadow-2xl rounded-lg hidden z-50">
+<!-- <section class="audio bg-slate-50 dark:bg-zinc-800 fixed bottom-5 left-1/2 transform -translate-x-1/2 text-center p-2 text-slate-950 dark:text-white shadow-2xl rounded-lg hidden z-50"> -->
+<section class="audio bg-slate-50 dark:bg-zinc-800 fixed bottom-0 w-full text-center p-2 text-slate-950 dark:text-white shadow-2xl hidden z-50">
     <audio id="myAudio" preload="auto"></audio>
 
     <div class="flex justify-center items-center gap-5">
@@ -25,5 +26,3 @@
         </div>
     </div>
 </section>
-
-<script async defer src="{{ URL::to('/') }}/js/audio.js"></script>

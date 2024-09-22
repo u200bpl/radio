@@ -1,4 +1,4 @@
-<header class="shadow bg-zinc-50 dark:bg-zinc-800 sticky top-0">
+<header class="shadow bg-zinc-50 dark:bg-zinc-800 sticky top-0 z-50">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
             <div class="flex items-center">
