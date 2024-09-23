@@ -26,7 +26,6 @@ class RadioController extends Controller
         $currentListeners = \Cache::get($key, 0);
 
         $uniqueIdentifier = $request->ip();
-
         $listeners = \Cache::get($key, []);
 
         if (!in_array($uniqueIdentifier, $listeners)) {
@@ -34,6 +33,10 @@ class RadioController extends Controller
             \Cache::put($key, $listeners, now()->addMinutes(10));
         }
 
-        return response()->json(['status' => 'success', 'listeners' => count($listeners)]);
+        return response()->json([
+            'status' => 'success',
+            'listeners' => count($listeners),
+            'station_id' => $stationId
+        ]);
     }
 }

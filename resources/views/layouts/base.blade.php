@@ -55,7 +55,7 @@
         <script>
             const stationId = {{ $radio->id }};
 
-            function sendListenerUpdate() {
+            function sendListenerUpdate(stationId) {
                 fetch('/radio/' + stationId + '/listener', {
                     method: 'POST',
                     headers: {
@@ -64,9 +64,19 @@
                     },
                     body: JSON.stringify({ station_id: stationId })
                 })
-                .then(response => response.json())
-                .then(data => console.log('Update sent:', data))
-                .catch((error) => console.error('Error:', error));
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Update sent for station ID:', data.station_id);
+                    console.log('Response:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
             }
         </script>
     </body>

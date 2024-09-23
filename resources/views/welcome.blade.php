@@ -5,7 +5,7 @@
 <!-- only show on page 1 -->
 @if ($radios->onFirstPage())
 <div class="container mx-auto px-4 mt-16">
-    <div class="relative bg-cover bg-center bg-no-repeat h-96 rounded-lg shadow-lg cursor-pointer group" style="background-image: url('{{ URL::to('/') }}/images/{{ $featuredRadio->background }}')" onclick="playAudio('{{ $featuredRadio->url }}', '{{ $featuredRadio->name }}', '{{ $featuredRadio->description }}', '{{ $featuredRadio->image }}')">
+    <div class="relative bg-cover bg-center bg-no-repeat h-96 rounded-lg shadow-lg cursor-pointer group" style="background-image: url('{{ URL::to('/') }}/images/{{ $featuredRadio->background }}')" onclick="playAudio('{{ $featuredRadio->url }}', '{{ $featuredRadio->name }}', '{{ $featuredRadio->description }}', '{{ $featuredRadio->image }}'); sendListenerUpdate('{{ $featuredRadio->id }}');">
         <div class="absolute inset-0 bg-black bg-opacity-50 h-full w-full rounded-lg transition-opacity group-hover:bg-opacity-75 duration-300"></div>
         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
             <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -30,7 +30,7 @@
             <h2 class="text-xl font-semibold">Radio Stations</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5">
                 @foreach ($radios as $radio)
-                    <div class="rounded-lg shadow bg-zinc-800 p-3 cursor-pointer flex flex-col justify-between group" onclick="playAudio('{{ $radio->url }}', '{{ $radio->name }}', '{{ $radio->description }}', '{{ $radio->image }}')">
+                    <div class="rounded-lg shadow bg-zinc-800 p-3 cursor-pointer flex flex-col justify-between group" onclick="playAudio('{{ $radio->url }}', '{{ $radio->name }}', '{{ $radio->description }}', '{{ $radio->image }}'); sendListenerUpdate('{{ $radio->id }}');">
                         <div class="relative">
                             <img src="{{ URL::to('/') }}/images/{{ $radio->image }}" alt="" class="rounded-lg w-full">
                             <div class="absolute inset-0 bg-black bg-opacity-0 h-full w-full rounded-lg transition-opacity group-hover:bg-opacity-50 duration-300"></div>
@@ -63,7 +63,7 @@
                 </div>
 
                 @foreach ($popularRadios as $radio)
-                    <div class="group p-3 block border-t-2 border-stone-600 cursor-pointer @if ($loop->last) hover:rounded-b-lg @endif" onclick="playAudio('{{ $radio->url }}', '{{ $radio->name }}', '{{ $radio->description }}', '{{ $radio->image }}')">
+                    <div class="group p-3 block border-t-2 border-stone-600 cursor-pointer @if ($loop->last) hover:rounded-b-lg @endif" onclick="playAudio('{{ $radio->url }}', '{{ $radio->name }}', '{{ $radio->description }}', '{{ $radio->image }}'); sendListenerUpdate('{{ $radio->id }}');">
                         <div class="flex-initial text-left flex gap-2">
                             <img src="{{ URL::to('/') }}/images/{{ $radio->image }}" alt="" class="w-10 h-10 rounded-lg">
                             <div class="flex items-center justify-between w-full">
