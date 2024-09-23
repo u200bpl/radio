@@ -41,8 +41,10 @@
                             </div>
                         </div>
                         <div class="mt-2">
-                            <p class="font-semibold text-base truncate group-hover:text-blue-400">{{ $radio->name }}</p>
-                            <span class="text-gray-300 text-xs">{{ $radio->description }}</span>
+                            <div>
+                                <p class="font-semibold text-base truncate group-hover:text-blue-400">{{ $radio->name }}</p>
+                                <span class="text-gray-300 text-xs">{{ $radio->description }}</span>
+                            </div>
                         </div>
                     </div>
                 @endforeach
