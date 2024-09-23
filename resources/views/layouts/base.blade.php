@@ -56,7 +56,7 @@
             const stationId = {{ $radio->id }};
 
             function sendListenerUpdate() {
-                fetch('/api/radio/' + stationId + '/listener', {
+                fetch('/radio/' + stationId + '/listener', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
