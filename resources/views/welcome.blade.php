@@ -31,7 +31,15 @@
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5">
                 @foreach ($radios as $radio)
                     <div class="rounded-lg shadow bg-zinc-800 p-3 cursor-pointer flex flex-col justify-between group" onclick="playAudio('{{ $radio->url }}', '{{ $radio->name }}', '{{ $radio->description }}', '{{ $radio->image }}')">
-                        <img src="{{ URL::to('/') }}/images/{{ $radio->image }}" alt="" class="rounded-lg w-full">
+                        <div class="relative">
+                            <img src="{{ URL::to('/') }}/images/{{ $radio->image }}" alt="" class="rounded-lg w-full">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 h-full w-full rounded-lg transition-opacity group-hover:bg-opacity-50 duration-300"></div>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
                         <div class="mt-2">
                             <p class="font-semibold text-base truncate group-hover:text-blue-400">{{ $radio->name }}</p>
                             <span class="text-gray-300 text-xs">{{ $radio->description }}</span>
