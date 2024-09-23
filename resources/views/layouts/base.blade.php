@@ -10,14 +10,6 @@
         @vite('resources/css/app.css')
         @vite('resources/js/app.js')
 
-        <script>
-            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark')
-            }
-        </script>
-
 <style>
     /* Voeg deze stijlen toe aan je CSS-bestand of de head-sectie van je HTML-bestand */
     .pagination {
@@ -49,7 +41,7 @@
     }
 </style>
     </head>
-    <body class="bg-zinc-100 dark:bg-zinc-900 dark:text-white font-sans">
+    <body class="bg-zinc-900 text-white">
         @include('layouts.header')
         
         @yield('content')

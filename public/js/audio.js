@@ -19,7 +19,7 @@ function playAudio(audioUrl, stationName, stationCategory, stationImg) {
                 <img src="${window.location.origin}/images/${stationImg}" alt="" class="w-10 h-10 rounded-lg">
                 <div class="flex flex-col">
                     <p class="font-semibold text-base">${stationName}</p>
-                    <span class="text-slate-700 dark:text-gray-300 text-xs">${stationCategory}</span>
+                    <span class="text-gray-300 text-xs">${stationCategory}</span>
                 </div>
             </div>
         `;
