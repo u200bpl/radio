@@ -40,10 +40,13 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="mt-2">
+                        <div class="mt-2 flex flex-row justify-between items-center">
                             <div>
-                                <p class="font-semibold text-base truncate group-hover:text-blue-400">{{ $radio->name }}</p>
+                                <p class="font-semibold text-base truncate group-hover:text-blue-400 max-w-36">{{ $radio->name }}</p>
                                 <span class="text-gray-300 text-xs">{{ $radio->description }}</span>
+                            </div>
+                            <div>
+                                <p><i class="fa-solid fa-user-group text-xs"></i> <span>{{ $radio->listeners }}</span></p>
                             </div>
                         </div>
                     </div>
@@ -69,9 +72,12 @@
                         <div class="flex-initial text-left flex gap-2">
                             <img src="{{ URL::to('/') }}/images/{{ $radio->image }}" alt="" class="w-10 h-10 rounded-lg">
                             <div class="flex items-center justify-between w-full">
-                                <div class="flex flex-col">
-                                    <p class="font-semibold text-base truncate group-hover:text-blue-400">{{ $radio->name }}</p>
+                                <div>
+                                    <p class="font-semibold text-base truncate group-hover:text-blue-400 max-w-36">{{ $radio->name }}</p>
                                     <span class="text-gray-300 text-xs">{{ $radio->description }}</span>
+                                </div>
+                                <div>
+                                    <p><i class="fa-solid fa-user-group text-xs"></i> <span>{{ $radio->listeners }}</span></p>
                                 </div>
                             </div>
                         </div>
