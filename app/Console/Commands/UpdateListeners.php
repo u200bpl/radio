@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Models\RadioStation;
+use App\Models\Radio;
 use Illuminate\Support\Facades\Cache;
 
 class UpdateListeners extends Command
@@ -18,7 +18,7 @@ class UpdateListeners extends Command
 
     public function handle()
     {
-        $stations = RadioStation::all();
+        $stations = Radio::all();
 
         foreach ($stations as $station) {
             $key = 'listeners_' . $station->id;

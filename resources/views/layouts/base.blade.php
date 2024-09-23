@@ -68,8 +68,6 @@
                 .then(data => console.log('Update sent:', data))
                 .catch((error) => console.error('Error:', error));
             }
-
-            setInterval(sendListenerUpdate, 600000);
         </script>
     </body>
 </html>

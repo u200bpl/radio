@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Radio;
-use App\Models\RadioStation;
 use Carbon\Carbon;
 
 class RadioController extends Controller
@@ -21,7 +20,7 @@ class RadioController extends Controller
 
     public function updateListeners(Request $request, $stationId)
     {
-        $station = RadioStation::findOrFail($stationId);
+        $station = Radio::findOrFail($stationId);
 
         $key = 'listeners_' . $stationId;
         $currentListeners = \Cache::get($key, 0);
