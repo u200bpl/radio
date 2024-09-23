@@ -46,7 +46,7 @@
         </main>
 
         <!-- SIDE BAR -->
-        <aside class="col-span-3 self-start sticky top-20 grid gap-y-5 mt-12">
+        <aside class="col-span-3 self-start grid gap-y-5 mt-12">
             <!-- POPULAIR -->
             <div class="rounded-lg shadow bg-zinc-800">
                 <div class="p-3 flex gap-2 items-center">
