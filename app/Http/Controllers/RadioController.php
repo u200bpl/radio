@@ -18,4 +18,23 @@ class RadioController extends Controller
             'popularRadios' => Radio::orderBy('listeners', 'desc')->take(5)->get()
         ]);
     }
+
+    public function updateListeners(Request $request, $stationId)
+    {
+        $station = RadioStation::findOrFail($stationId);
+
+        $key = 'listeners_' . $stationId;
+        $currentListeners = \Cache::get($key, 0);
+
+        $uniqueIdentifier = $request->ip();
+
+        $listeners = \Cache::get($key, []);
+
+        if (!in_array($uniqueIdentifier, $listeners)) {
+            $listeners[] = $uniqueIdentifier;
+            \Cache::put($key, $listeners, now()->addMinutes(10));
+        }
+
+        return response()->json(['status' => 'success', 'listeners' => count($listeners)]);
+    }
 }

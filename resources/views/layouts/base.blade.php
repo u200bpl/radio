@@ -51,5 +51,25 @@
         @include('layouts.audio')
         <script async defer src="{{ URL::to('/') }}/js/audio.js"></script>
         <script async defer src="{{ URL::to('/') }}/js/pagination.js"></script>
+
+        <script>
+            const stationId = {{ $radio->id }};
+
+            function sendListenerUpdate() {
+                fetch('/api/radio/' + stationId + '/listener', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({ station_id: stationId })
+                })
+                .then(response => response.json())
+                .then(data => console.log('Update sent:', data))
+                .catch((error) => console.error('Error:', error));
+            }
+
+            setInterval(sendListenerUpdate, 600000);
+        </script>
     </body>
 </html>

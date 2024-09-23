@@ -19,3 +19,4 @@ use App\Http\Controllers\RadioController;
 // });
 
 Route::get('/', [RadioController::class, 'index'])->name('index');
+Route::post('/radio/{station}/listener', [RadioController::class, 'updateListeners']);
