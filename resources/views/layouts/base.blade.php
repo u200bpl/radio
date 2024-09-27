@@ -78,6 +78,8 @@
                     console.error('Error:', error);
                 });
             }
+
+            setInterval(sendListenerUpdate, 600000);
         </script>
     </body>
 </html>
