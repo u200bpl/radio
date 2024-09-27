@@ -20,12 +20,23 @@ class RadioController extends Controller
 
     public function updateListeners(Request $request, $stationId)
     {
-        $station = Radio::findOrFail($stationId);
-
-        $key = 'listeners_' . $stationId;
-        $currentListeners = \Cache::get($key, 0);
+        $currentStationId = $request->session()->get('current_station_id'); 
 
         $uniqueIdentifier = $request->ip();
+
+        if ($currentStationId && $currentStationId != $stationId) {
+            $oldKey = 'listeners_' . $currentStationId;
+            $listeners = \Cache::get($oldKey, []);
+
+            if (($key = array_search($uniqueIdentifier, $listeners)) !== false) {
+                unset($listeners[$key]);
+                \Cache::put($oldKey, $listeners, now()->addMinutes(10));
+            }
+        }
+
+        $request->session()->put('current_station_id', $stationId);
+
+        $key = 'listeners_' . $stationId;
         $listeners = \Cache::get($key, []);
 
         if (!in_array($uniqueIdentifier, $listeners)) {
