@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Radio;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 class RadioController extends Controller
 {
@@ -21,16 +22,19 @@ class RadioController extends Controller
     public function updateListeners(Request $request, $stationId)
     {
         $currentStationId = $request->session()->get('current_station_id'); 
-
         $uniqueIdentifier = $request->ip();
 
         if ($currentStationId && $currentStationId != $stationId) {
             $oldKey = 'listeners_' . $currentStationId;
-            $listeners = \Cache::get($oldKey, []);
+            $oldListeners = \Cache::get($oldKey, []);
 
-            if (($key = array_search($uniqueIdentifier, $listeners)) !== false) {
-                unset($listeners[$key]);
-                \Cache::put($oldKey, $listeners, now()->addMinutes(10));
+            if (($key = array_search($uniqueIdentifier, array_column($oldListeners, 'ip'))) !== false) {
+                unset($oldListeners[$key]);
+                if (count($oldListeners) > 0) {
+                    \Cache::put($oldKey, array_values($oldListeners), now()->addMinutes(10));
+                } else {
+                    \Cache::forget($oldKey);
+                }
             }
         }
 
@@ -39,8 +43,12 @@ class RadioController extends Controller
         $key = 'listeners_' . $stationId;
         $listeners = \Cache::get($key, []);
 
-        if (!in_array($uniqueIdentifier, $listeners)) {
-            $listeners[] = $uniqueIdentifier;
+        $currentTime = now();
+        if (!in_array($uniqueIdentifier, array_column($listeners, 'ip'))) {
+            $listeners[] = [
+                'ip' => $uniqueIdentifier,
+                'last_active' => $currentTime
+            ];
             \Cache::put($key, $listeners, now()->addMinutes(10));
         }
 

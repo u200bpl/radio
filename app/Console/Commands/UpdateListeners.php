@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Models\Radio;
 use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
 
 class UpdateListeners extends Command
 {
@@ -24,10 +25,20 @@ class UpdateListeners extends Command
             $key = 'listeners_' . $station->id;
             $listeners = Cache::get($key, []);
 
-            $station->listeners = count($listeners);
+            $timeLimit = Carbon::now()->subHour();
+
+            $activeListeners = array_filter($listeners, function($listener) use ($timeLimit) {
+                return isset($listener['last_active']) && Carbon::parse($listener['last_active'])->greaterThan($timeLimit);
+            });
+
+            $station->listeners = count($activeListeners);
             $station->save();
 
-            Cache::forget($key);
+            if (count($activeListeners) > 0) {
+                Cache::put($key, $activeListeners, now()->addMinutes(10));
+            } else {
+                Cache::forget($key);
+            }
         }
 
         $this->info('Listeners updated successfully.');
